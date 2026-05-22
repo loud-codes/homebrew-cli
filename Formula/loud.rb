@@ -2,8 +2,8 @@ class Loud < Formula
   desc "Terminal-first AI agent (LOUD) — self-hosted, cross-platform, permission-aware"
   homepage "https://loud.codes"
   url "https://github.com/loud-codes/loud-cli/archive/refs/heads/main.tar.gz"
-  version "1.0.2"
-  sha256 "a00ba1ebd8511a3649e799f5eb4728fb67fcdaba19e2d6172224bd8a4b91f5b8"
+  version "1.1.0"
+  sha256 "e903f5a2dc9264d5684d2729e37a2205e25190f3d8d31809da39e561732cce3a"
   license "MIT"
 
   depends_on "python@3.12"
