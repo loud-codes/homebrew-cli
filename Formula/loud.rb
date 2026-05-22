@@ -1,9 +1,9 @@
 class Loud < Formula
-  desc "Terminal-first AI agent for builders (web dev, scraping, ops)"
+  desc "Terminal-first AI agent (LOUD) — self-hosted, cross-platform, permission-aware"
   homepage "https://loud.codes"
   url "https://github.com/loud-codes/loud-cli/archive/refs/heads/main.tar.gz"
-  version "0.1.0"
-  sha256 "cf775e25ea04d586f573869f0199cf714e2d95bbe85565a1b9376bf5ce6dbd30"
+  version "0.3.0"
+  sha256 "5da98f3e2cbebe971793966869ea4e5ef5d5ac671a58b91e6599e9fd304740b4"
   license "MIT"
 
   depends_on "python@3.12"
@@ -23,7 +23,19 @@ class Loud < Formula
     chmod 0755, bin/"loud"
   end
 
+  def caveats
+    <<~EOS
+      LOUD is invite-only while in private beta. After install:
+
+        loud login       # use your LOUD username + password
+        loud             # interactive REPL
+        loud update      # self-update to the latest release
+
+      Docs: https://loud.codes
+    EOS
+  end
+
   test do
-    assert_match "LOUD", shell_output("#{bin}/loud --help")
+    assert_match "loud", shell_output("#{bin}/loud --version")
   end
 end
