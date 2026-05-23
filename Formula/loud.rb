@@ -2,8 +2,8 @@ class Loud < Formula
   desc "Terminal-first AI agent (LOUD) — self-hosted, cross-platform, permission-aware"
   homepage "https://loud.codes"
   url "https://github.com/loud-codes/loud-cli/archive/refs/heads/main.tar.gz"
-  version "1.3.4"
-  sha256 "1ab51e4a7c591ac9ff12c949ab7acef46cb680709e294cfb27c7e06d8a680fe8"
+  version "1.3.5"
+  sha256 "dbb69326585c810bb7596688893d5a2cc6709cf9219247b2fcd6fdd2f8a8947b"
   license "MIT"
 
   depends_on "python@3.12"
@@ -13,6 +13,13 @@ class Loud < Formula
     system Formula["python@3.12"].opt_bin/"python3.12", "-m", "venv", venv
     system venv/"bin/pip", "install", "--quiet", "--upgrade", "pip"
     system venv/"bin/pip", "install", "--quiet", "httpx"
+    # Full GUI / browser / voice bundle — part of LOUD core, not optional.
+    system venv/"bin/pip", "install", "--quiet",
+           "playwright", "sounddevice", "numpy",
+           "pyautogui", "pillow", "mss"
+    # Chromium for playwright. Tolerated failure — user can `loud setup gui`
+    # later if the network hiccups during brew install.
+    system venv/"bin/python3", "-m", "playwright", "install", "chromium" rescue nil
 
     libexec.install Dir["cli/*"]
 
@@ -30,6 +37,10 @@ class Loud < Formula
         loud login       # use your LOUD username + password
         loud             # interactive REPL
         loud update      # self-update to the latest release
+
+      First time LOUD wants to control the browser, mic, or take a screenshot,
+      macOS will ask for Accessibility / Microphone / Screen Recording
+      permission — grant it once in System Settings → Privacy.
 
       Docs: https://loud.codes
     EOS
