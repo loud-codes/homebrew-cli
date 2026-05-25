@@ -2,8 +2,8 @@ class Loud < Formula
   desc "Terminal-first AI agent (LOUD) — self-hosted, cross-platform, permission-aware"
   homepage "https://loud.codes"
   url "https://github.com/loud-codes/loud-cli/archive/refs/heads/main.tar.gz"
-  version "1.3.8"
-  sha256 "27a99662066c3f8bd5ad2f1a22387abc1650de20bb862917e8661738338d1459"
+  version "1.5.0"
+  sha256 "808ee33b5731c9589eaacbf0e52a12faac67f8b69ab7a89220f0ca71185328c1"
   license "MIT"
 
   depends_on "python@3.12"
@@ -17,6 +17,9 @@ class Loud < Formula
     system venv/"bin/pip", "install", "--quiet",
            "playwright", "sounddevice", "numpy",
            "pyautogui", "pillow", "mss"
+    # Scrapling: native scraper bundle (basic + stealth + dynamic). Pulls
+    # lxml + curl_cffi + patchright + browserforge.
+    system venv/"bin/pip", "install", "--quiet", "scrapling[fetchers]"
     # Chromium for playwright. Tolerated failure — user can `loud setup gui`
     # later if the network hiccups during brew install.
     system venv/"bin/python3", "-m", "playwright", "install", "chromium" rescue nil
