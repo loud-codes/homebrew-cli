@@ -3,7 +3,7 @@ class Loud < Formula
   homepage "https://loud.codes"
   url "https://github.com/loud-codes/loud-cli/archive/refs/heads/main.tar.gz"
   version "1.8.0"
-  sha256 "19085903b42d7545d1c92a15df809fe7b07e7c7ed3a9bac418c63431d2b71898"
+  sha256 "35b7dc1f59302a3fe6844370548396e9933863c00d7dee3f09bd7725c882ea14"
   license "MIT"
 
   depends_on "python@3.12"
